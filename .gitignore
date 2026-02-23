@@ -1,0 +1,45 @@
+# Large model files
+*.pt
+*.pth
+*.h5
+*.pkl
+
+# Video files
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.m4v
+*.webm
+*.flv
+*.wmv
+
+# Excel/Data files (upload these separately)
+*.xlsx
+*.xls
+*.csv
+
+# Temporary directories
+/tmp/
+/uploads/
+detected_frames_*/
+microsleep_frames/
+phone_detection_output/
+output/
+enhanced_analysis/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+myenv/
+mp_env/
+
+# OS
+.DS_Store
+Thumbs.db
+.vscode/
