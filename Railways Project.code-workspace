@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../railway backend"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

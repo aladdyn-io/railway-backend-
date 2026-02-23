@@ -1,0 +1,9 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1768282702.812442       1 gl_context.cc:344] GL version: 2.1 (2.1 Metal - 89.4), renderer: Apple M4
+INFO: Created TensorFlow Lite XNNPACK delegate for CPU.
+I0000 00:00:1768282702.829795       1 gl_context.cc:344] GL version: 2.1 (2.1 Metal - 89.4), renderer: Apple M4
+I0000 00:00:1768282702.910700       1 gl_context.cc:344] GL version: 2.1 (2.1 Metal - 89.4), renderer: Apple M4
+ * Serving Flask app 'video_processor_api'
+ * Debug mode: on
+Address already in use
+Port 9001 is in use by another program. Either identify and stop that program, or start the server with a different port.

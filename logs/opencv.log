@@ -1,0 +1,717 @@
+Starting OpenCV API on port 5003...
+ * Serving Flask app 'api_opencv'
+ * Debug mode: on
+[31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5003
+ * Running on http://192.168.1.17:5003
+[33mPress CTRL+C to quit[0m
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+127.0.0.1 - - [27/Jan/2026 15:17:47] "GET /health HTTP/1.1" 200 -
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_timestamp_ocr.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/perfect_hand_signal_detector.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/video_processor_api.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/requirement_team_loader.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369
+ * Detected change in '/Users/yakesh/Desktop/Railways Project/station_alert_system.py', reloading
+Starting OpenCV API on port 5003...
+ * Restarting with stat
+ * Debugger is active!
+ * Debugger PIN: 553-281-369

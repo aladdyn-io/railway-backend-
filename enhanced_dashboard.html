@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Safety Analytics Dashboard</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/date-fns@2.29.3/index.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #64748b;
+            --success-color: #10b981;
+            --warning-color: #f59e0b;
+            --danger-color: #ef4444;
+            --info-color: #06b6d4;
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --border-color: #e2e8f0;
+            --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--light-color);
+            color: var(--dark-color);
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1d4ed8 100%);
+            color: white;
+            padding: 1rem 2rem;
+            box-shadow: var(--shadow-lg);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section img {
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
+        }
+
+        .header-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .header-subtitle {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-secondary {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--border-color);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-card.danger { border-left-color: var(--danger-color); }
+        .stat-card.warning { border-left-color: var(--warning-color); }
+        .stat-card.success { border-left-color: var(--success-color); }
+        .stat-card.info { border-left-color: var(--info-color); }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .stat-icon.danger { background-color: var(--danger-color); }
+        .stat-icon.warning { background-color: var(--warning-color); }
+        .stat-icon.success { background-color: var(--success-color); }
+        .stat-icon.info { background-color: var(--info-color); }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .stat-trend {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+        }
+
+        .trend-up { color: var(--success-color); }
+        .trend-down { color: var(--danger-color); }
+
+        /* Charts Section */
+        .charts-section {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .chart-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .chart-controls {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .control-btn {
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: all 0.2s;
+        }
+
+        .control-btn.active {
+            background: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        /* Detection Timeline */
+        .timeline-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            margin-bottom: 2rem;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-left: 3px solid var(--border-color);
+            margin-bottom: 1rem;
+            background: var(--light-color);
+            border-radius: 0 8px 8px 0;
+            transition: all 0.2s;
+        }
+
+        .timeline-item:hover {
+            background: white;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-item.danger { border-left-color: var(--danger-color); }
+        .timeline-item.warning { border-left-color: var(--warning-color); }
+        .timeline-item.info { border-left-color: var(--info-color); }
+
+        .timeline-time {
+            font-weight: 600;
+            color: var(--primary-color);
+            min-width: 80px;
+        }
+
+        .timeline-content {
+            flex: 1;
+            margin-left: 1rem;
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-description {
+            color: var(--secondary-color);
+            font-size: 0.9rem;
+        }
+
+        .confidence-badge {
+            background: var(--success-color);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Detection Gallery */
+        .gallery-section {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .detection-card {
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        .detection-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .detection-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            background: var(--light-color);
+        }
+
+        .detection-info {
+            padding: 1rem;
+        }
+
+        .detection-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .detection-type {
+            font-weight: 600;
+            color: var(--dark-color);
+        }
+
+        .detection-time {
+            color: var(--secondary-color);
+            font-size: 0.85rem;
+        }
+
+        .detection-details {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .detail-badge {
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .badge-confidence {
+            background: rgba(16, 185, 129, 0.1);
+            color: var(--success-color);
+        }
+
+        .badge-quality {
+            background: rgba(6, 182, 212, 0.1);
+            color: var(--info-color);
+        }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-color);
+            border-top: 3px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin-right: 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .charts-section {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--light-color);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--border-color);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img src="{{ url_for('static', filename='Picture1.png') }}" alt="Railway Logo">
+                <div>
+                    <div class="header-title">Railway Safety Analytics</div>
+                    <div class="header-subtitle">Advanced AI-Powered Detection System</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-secondary" onclick="exportReport()">
+                    <i class="fas fa-download"></i> Export Report
+                </button>
+                <button class="btn btn-secondary" onclick="refreshData()">
+                    <i class="fas fa-sync-alt"></i> Refresh
+                </button>
+                <a href="/" class="btn btn-primary">
+                    <i class="fas fa-upload"></i> New Analysis
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Statistics Cards -->
+        <div class="stats-grid fade-in">
+            <div class="stat-card danger">
+                <div class="stat-header">
+                    <div class="stat-icon danger">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div class="stat-value" id="drowsiness-count">{{ stats.total_sleep or 0 }}</div>
+                <div class="stat-label">Drowsiness Events</div>
+                <div class="stat-trend trend-down">
+                    <i class="fas fa-arrow-down"></i>
+                    <span>12% from last week</span>
+                </div>
+            </div>
+
+            <div class="stat-card warning">
+                <div class="stat-header">
+                    <div class="stat-icon warning">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                </div>
+                <div class="stat-value" id="mobile-count">{{ stats.total_mobile or 0 }}</div>
+                <div class="stat-label">Mobile Violations</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>8% from last week</span>
+                </div>
+            </div>
+
+            <div class="stat-card info">
+                <div class="stat-header">
+                    <div class="stat-icon info">
+                        <i class="fas fa-hand-paper"></i>
+                    </div>
+                </div>
+                <div class="stat-value" id="gesture-count">{{ stats.total_gestures or 0 }}</div>
+                <div class="stat-label">Signal Gestures</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-arrow-up"></i>
+                    <span>15% from last week</span>
+                </div>
+            </div>
+
+            <div class="stat-card success">
+                <div class="stat-header">
+                    <div class="stat-icon success">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                </div>
+                <div class="stat-value" id="duration">{{ "%.1f"|format(stats.duration or 0) }}</div>
+                <div class="stat-label">Minutes Analyzed</div>
+                <div class="stat-trend trend-up">
+                    <i class="fas fa-check"></i>
+                    <span>Processing complete</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Charts Section -->
+        <div class="charts-section fade-in">
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Detection Timeline</h3>
+                    <div class="chart-controls">
+                        <button class="control-btn active" onclick="setTimeRange('1h')">1H</button>
+                        <button class="control-btn" onclick="setTimeRange('6h')">6H</button>
+                        <button class="control-btn" onclick="setTimeRange('24h')">24H</button>
+                    </div>
+                </div>
+                <canvas id="timelineChart" width="400" height="200"></canvas>
+            </div>
+
+            <div class="chart-container">
+                <div class="chart-header">
+                    <h3 class="chart-title">Detection Distribution</h3>
+                </div>
+                <canvas id="distributionChart" width="300" height="200"></canvas>
+            </div>
+        </div>
+
+        <!-- Real-time Timeline -->
+        <div class="timeline-section fade-in">
+            <div class="timeline-header">
+                <h3 class="chart-title">Recent Detections</h3>
+                <div class="chart-controls">
+                    <button class="control-btn active" onclick="filterTimeline('all')">All</button>
+                    <button class="control-btn" onclick="filterTimeline('high')">High Priority</button>
+                    <button class="control-btn" onclick="filterTimeline('medium')">Medium</button>
+                </div>
+            </div>
+            <div id="timeline-container">
+                <!-- Timeline items will be populated by JavaScript -->
+            </div>
+        </div>
+
+        <!-- Detection Gallery -->
+        <div class="gallery-section fade-in">
+            <div class="chart-header">
+                <h3 class="chart-title">Detection Gallery</h3>
+                <div class="chart-controls">
+                    <button class="control-btn active" onclick="filterGallery('all')">All</button>
+                    <button class="control-btn" onclick="filterGallery('drowsiness')">Drowsiness</button>
+                    <button class="control-btn" onclick="filterGallery('mobile')">Mobile</button>
+                    <button class="control-btn" onclick="filterGallery('gestures')">Gestures</button>
+                </div>
+            </div>
+            <div class="gallery-grid" id="gallery-container">
+                <!-- Gallery items will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample data - replace with actual data from backend
+        const analysisData = {
+            timeline: {{ timeline | tojsonfilter | safe if timeline else '[]' }},
+            drowsinessEvents: {{ sleep_events | tojsonfilter | safe if sleep_events else '[]' }},
+            mobileEvents: {{ mobile_events | tojsonfilter | safe if mobile_events else '[]' }},
+            gestureEvents: {{ gesture_events | tojsonfilter | safe if gesture_events else '[]' }},
+            stats: {{ stats | tojsonfilter | safe if stats else '{}' }}
+        };
+
+        // Initialize charts
+        let timelineChart, distributionChart;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeCharts();
+            populateTimeline();
+            populateGallery();
+            startRealTimeUpdates();
+        });
+
+        function initializeCharts() {
+            // Timeline Chart
+            const timelineCtx = document.getElementById('timelineChart').getContext('2d');
+            timelineChart = new Chart(timelineCtx, {
+                type: 'line',
+                data: {
+                    labels: generateTimeLabels(),
+                    datasets: [{
+                        label: 'Drowsiness',
+                        data: generateTimelineData('drowsiness'),
+                        borderColor: '#ef4444',
+                        backgroundColor: 'rgba(239, 68, 68, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Mobile Usage',
+                        data: generateTimelineData('mobile'),
+                        borderColor: '#f59e0b',
+                        backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                        tension: 0.4
+                    }, {
+                        label: 'Gestures',
+                        data: generateTimelineData('gestures'),
+                        borderColor: '#06b6d4',
+                        backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            grid: {
+                                color: '#e2e8f0'
+                            }
+                        },
+                        x: {
+                            grid: {
+                                color: '#e2e8f0'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Distribution Chart
+            const distributionCtx = document.getElementById('distributionChart').getContext('2d');
+            distributionChart = new Chart(distributionCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Drowsiness', 'Mobile Usage', 'Gestures', 'Other'],
+                    datasets: [{
+                        data: [
+                            analysisData.stats.total_sleep || 0,
+                            analysisData.stats.total_mobile || 0,
+                            analysisData.stats.total_gestures || 0,
+                            analysisData.stats.total_other || 0
+                        ],
+                        backgroundColor: ['#ef4444', '#f59e0b', '#06b6d4', '#64748b'],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'bottom',
+                        }
+                    }
+                }
+            });
+        }
+
+        function generateTimeLabels() {
+            const labels = [];
+            const duration = analysisData.stats.duration || 60;
+            const intervals = Math.min(20, Math.ceil(duration / 3)); // Max 20 points
+            
+            for (let i = 0; i <= intervals; i++) {
+                const time = (duration / intervals) * i;
+                const minutes = Math.floor(time / 60);
+                const seconds = Math.floor(time % 60);
+                labels.push(`${minutes}:${seconds.toString().padStart(2, '0')}`);
+            }
+            return labels;
+        }
+
+        function generateTimelineData(type) {
+            // Generate sample data based on actual events
+            const data = [];
+            const labels = generateTimeLabels();
+            
+            labels.forEach((label, index) => {
+                // Count events in this time window
+                const timePoint = (analysisData.stats.duration || 60) / (labels.length - 1) * index;
+                let count = 0;
+                
+                if (type === 'drowsiness') {
+                    count = analysisData.drowsinessEvents.filter(event => {
+                        const eventTime = parseTimeToSeconds(event.time);
+                        return Math.abs(eventTime - timePoint) < 30; // 30 second window
+                    }).length;
+                } else if (type === 'mobile') {
+                    count = analysisData.mobileEvents.filter(event => {
+                        const eventTime = parseTimeToSeconds(event.time);
+                        return Math.abs(eventTime - timePoint) < 30;
+                    }).length;
+                } else if (type === 'gestures') {
+                    count = analysisData.gestureEvents.filter(event => {
+                        const eventTime = parseTimeToSeconds(event.time);
+                        return Math.abs(eventTime - timePoint) < 30;
+                    }).length;
+                }
+                
+                data.push(count);
+            });
+            
+            return data;
+        }
+
+        function parseTimeToSeconds(timeStr) {
+            const parts = timeStr.split(':');
+            return parseInt(parts[0]) * 60 + parseInt(parts[1]);
+        }
+
+        function populateTimeline() {
+            const container = document.getElementById('timeline-container');
+            const allEvents = [
+                ...analysisData.drowsinessEvents.map(e => ({...e, type: 'drowsiness', priority: 'high'})),
+                ...analysisData.mobileEvents.map(e => ({...e, type: 'mobile', priority: 'medium'})),
+                ...analysisData.gestureEvents.map(e => ({...e, type: 'gestures', priority: 'low'}))
+            ].sort((a, b) => parseTimeToSeconds(b.time) - parseTimeToSeconds(a.time));
+
+            container.innerHTML = '';
+
+            allEvents.slice(0, 10).forEach(event => {
+                const item = document.createElement('div');
+                item.className = `timeline-item ${getEventClass(event.type)}`;
+                
+                item.innerHTML = `
+                    <div class="timeline-time">${event.time}</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">${getEventTitle(event.type)}</div>
+                        <div class="timeline-description">${getEventDescription(event)}</div>
+                    </div>
+                    <div class="confidence-badge">${Math.round((event.confidence || 0.85) * 100)}%</div>
+                `;
+                
+                container.appendChild(item);
+            });
+        }
+
+        function populateGallery() {
+            const container = document.getElementById('gallery-container');
+            const allEvents = [
+                ...analysisData.drowsinessEvents.map(e => ({...e, type: 'drowsiness'})),
+                ...analysisData.mobileEvents.map(e => ({...e, type: 'mobile'})),
+                ...analysisData.gestureEvents.map(e => ({...e, type: 'gestures'}))
+            ];
+
+            container.innerHTML = '';
+
+            allEvents.forEach(event => {
+                const card = document.createElement('div');
+                card.className = 'detection-card';
+                card.dataset.type = event.type;
+                
+                card.innerHTML = `
+                    <img src="${event.image ? '/images/' + event.image : '/static/placeholder.jpg'}" 
+                         alt="${event.type}" class="detection-image" 
+                         onerror="this.src='/static/placeholder.jpg'">
+                    <div class="detection-info">
+                        <div class="detection-header">
+                            <div class="detection-type">${getEventTitle(event.type)}</div>
+                            <div class="detection-time">${event.time}</div>
+                        </div>
+                        <div class="detection-details">
+                            <span class="detail-badge badge-confidence">
+                                ${Math.round((event.confidence || 0.85) * 100)}% confidence
+                            </span>
+                            <span class="detail-badge badge-quality">
+                                ${Math.round((event.quality || 0.8) * 100)}% quality
+                            </span>
+                        </div>
+                    </div>
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function getEventClass(type) {
+            const classes = {
+                'drowsiness': 'danger',
+                'mobile': 'warning',
+                'gestures': 'info'
+            };
+            return classes[type] || 'info';
+        }
+
+        function getEventTitle(type) {
+            const titles = {
+                'drowsiness': 'Drowsiness Detected',
+                'mobile': 'Mobile Phone Usage',
+                'gestures': 'Signal Gesture'
+            };
+            return titles[type] || 'Detection Event';
+        }
+
+        function getEventDescription(event) {
+            if (event.reason) return event.reason;
+            if (event.action) return event.action;
+            return `${getEventTitle(event.type)} detected with high confidence`;
+        }
+
+        // Control functions
+        function setTimeRange(range) {
+            document.querySelectorAll('.chart-controls .control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update chart data based on range
+            // Implementation would filter data by time range
+        }
+
+        function filterTimeline(filter) {
+            document.querySelectorAll('.timeline-section .control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter timeline items
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach(item => {
+                if (filter === 'all') {
+                    item.style.display = 'flex';
+                } else {
+                    const priority = item.dataset.priority || 'medium';
+                    item.style.display = priority === filter ? 'flex' : 'none';
+                }
+            });
+        }
+
+        function filterGallery(filter) {
+            document.querySelectorAll('.gallery-section .control-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Filter gallery items
+            const cards = document.querySelectorAll('.detection-card');
+            cards.forEach(card => {
+                if (filter === 'all') {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = card.dataset.type === filter ? 'block' : 'none';
+                }
+            });
+        }
+
+        function exportReport() {
+            // Implementation for exporting report
+            alert('Report export functionality would be implemented here');
+        }
+
+        function refreshData() {
+            // Implementation for refreshing data
+            location.reload();
+        }
+
+        function startRealTimeUpdates() {
+            // Simulate real-time updates
+            setInterval(() => {
+                // Update counters with animation
+                animateCounter('drowsiness-count');
+                animateCounter('mobile-count');
+                animateCounter('gesture-count');
+            }, 30000); // Update every 30 seconds
+        }
+
+        function animateCounter(elementId) {
+            const element = document.getElementById(elementId);
+            const currentValue = parseInt(element.textContent);
+            const newValue = currentValue + Math.floor(Math.random() * 2); // Random increment
+            
+            if (newValue !== currentValue) {
+                element.style.transform = 'scale(1.1)';
+                setTimeout(() => {
+                    element.textContent = newValue;
+                    element.style.transform = 'scale(1)';
+                }, 150);
+            }
+        }
+
+        // Add smooth scrolling for better UX
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

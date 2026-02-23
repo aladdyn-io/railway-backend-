@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Processing Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        .upload-area { border: 2px dashed #ccc; padding: 40px; text-align: center; margin: 20px 0; }
+        .upload-area.dragover { border-color: #007bff; background-color: #f8f9fa; }
+        .result-card { border: 1px solid #ddd; border-radius: 8px; padding: 20px; margin: 20px 0; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin: 20px 0; }
+        .stat-item { background: #f8f9fa; padding: 15px; border-radius: 6px; text-align: center; }
+        .stat-value { font-size: 24px; font-weight: bold; color: #007bff; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 5px; }
+        .events-list { max-height: 300px; overflow-y: auto; }
+        .event-item { padding: 10px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; }
+        .status-compliant { color: #28a745; }
+        .status-violation { color: #dc3545; }
+        .loading { display: none; text-align: center; padding: 20px; }
+        button { background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 4px; cursor: pointer; }
+        button:disabled { background: #ccc; cursor: not-allowed; }
+        input[type="file"] { margin: 10px 0; }
+        input[type="text"] { width: 100%; padding: 8px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; }
+    </style>
+</head>
+<body>
+    <h1>Video Processing Test</h1>
+    <p>Upload a video to test all 4 detection APIs and see results in dashboard format</p>
+    
+    <div class="upload-area" id="uploadArea">
+        <p>Drop video file here or click to select</p>
+        <input type="file" id="videoFile" accept="video/*" style="display: none;">
+        <input type="text" id="videoTitle" placeholder="Enter video title (optional)">
+        <button onclick="selectFile()">Select Video File</button>
+        <button onclick="processVideo()" id="processBtn" disabled>Process Video</button>
+    </div>
+    
+    <div class="loading" id="loading">
+        <p>Processing video... This may take a few minutes.</p>
+        <div style="width: 100%; background: #f0f0f0; border-radius: 10px; overflow: hidden;">
+            <div id="progressBar" style="width: 0%; height: 20px; background: #007bff; transition: width 0.3s;"></div>
+        </div>
+    </div>
+    
+    <div id="results" style="display: none;">
+        <div class="result-card">
+            <h2 id="videoTitle">Video Results</h2>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="phoneUsage">0</div>
+                    <div class="stat-label">Phone Usage</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="handSignals">0</div>
+                    <div class="stat-label">Hand Signals</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="bagsDetected">0</div>
+                    <div class="stat-label">Bags Detected</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="totalAlerts">0</div>
+                    <div class="stat-label">Total Alerts</div>
+                </div>
+            </div>
+            
+            <h3>Detected Objects</h3>
+            <div id="detectedObjects"></div>
+            
+            <h3>Event Timeline</h3>
+            <div class="events-list" id="eventsList"></div>
+            
+            <button onclick="saveToLocalStorage()" style="margin-top: 20px;">Save to Dashboard</button>
+        </div>
+    </div>
+
+    <script>
+        let currentVideoData = null;
+        
+        const uploadArea = document.getElementById('uploadArea');
+        const videoFile = document.getElementById('videoFile');
+        const processBtn = document.getElementById('processBtn');
+        
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+        
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+        
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            const files = e.dataTransfer.files;
+            if (files.length > 0 && files[0].type.startsWith('video/')) {
+                videoFile.files = files;
+                processBtn.disabled = false;
+            }
+        });
+        
+        function selectFile() {
+            videoFile.click();
+        }
+        
+        videoFile.addEventListener('change', () => {
+            processBtn.disabled = videoFile.files.length === 0;
+        });
+        
+        async function processVideo() {
+            const file = videoFile.files[0];
+            const title = document.getElementById('videoTitle').value || `Video ${new Date().toLocaleString()}`;
+            
+            if (!file) {
+                alert('Please select a video file');
+                return;
+            }
+            
+            const formData = new FormData();
+            formData.append('video', file);
+            formData.append('title', title);
+            
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('results').style.display = 'none';
+            
+            // Simulate progress
+            let progress = 0;
+            const progressInterval = setInterval(() => {
+                progress += Math.random() * 10;
+                if (progress > 90) progress = 90;
+                document.getElementById('progressBar').style.width = progress + '%';
+            }, 500);
+            
+            try {
+                const response = await fetch('http://localhost:9000/api/process-video', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                clearInterval(progressInterval);
+                document.getElementById('progressBar').style.width = '100%';
+                
+                if (result.success) {
+                    currentVideoData = result.video;
+                    displayResults(result.video);
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('results').style.display = 'block';
+                } else {
+                    alert('Error: ' + result.error);
+                    document.getElementById('loading').style.display = 'none';
+                }
+            } catch (error) {
+                clearInterval(progressInterval);
+                alert('Error processing video: ' + error.message);
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+        
+        function displayResults(videoData) {
+            document.getElementById('videoTitle').textContent = videoData.title;
+            document.getElementById('phoneUsage').textContent = videoData.phoneUsage || 0;
+            document.getElementById('handSignals').textContent = videoData.handSignals || 0;
+            document.getElementById('bagsDetected').textContent = videoData.bagsDetected || 0;
+            document.getElementById('totalAlerts').textContent = videoData.alerts || 0;
+            
+            // Display detected objects
+            const objectsDiv = document.getElementById('detectedObjects');
+            if (videoData.detectedObjects && Object.keys(videoData.detectedObjects).length > 0) {
+                objectsDiv.innerHTML = Object.entries(videoData.detectedObjects)
+                    .map(([name, count]) => `<span style="background: #e3f2fd; padding: 4px 8px; margin: 2px; border-radius: 4px; display: inline-block;">${name} (${count})</span>`)
+                    .join('');
+            } else {
+                objectsDiv.innerHTML = '<p style="color: #666;">No objects detected</p>';
+            }
+            
+            // Display events
+            const eventsList = document.getElementById('eventsList');
+            const events = [];
+            
+            if (videoData.detectionResults) {
+                videoData.detectionResults.forEach((detection, index) => {
+                    const timestamp = detection.timestamp_seconds || 0;
+                    const time = new Date(timestamp * 1000).toISOString().substr(11, 8);
+                    
+                    if (detection.phone?.phone_detected) {
+                        events.push({
+                            time,
+                            type: 'Phone Usage',
+                            status: 'violation',
+                            details: `Confidence: ${Math.round(detection.phone.detections[0]?.confidence * 100 || 0)}%`
+                        });
+                    }
+                    
+                    if (detection.handSignal?.signal_detected) {
+                        events.push({
+                            time,
+                            type: 'Hand Signal',
+                            status: 'compliant',
+                            details: `Type: ${detection.handSignal.signal_type}`
+                        });
+                    }
+                    
+                    if (detection.microsleep?.detected) {
+                        events.push({
+                            time,
+                            type: 'Microsleep',
+                            status: 'violation',
+                            details: `Reason: ${detection.microsleep.reason}`
+                        });
+                    }
+                    
+                    if (detection.bags?.bags_detected) {
+                        events.push({
+                            time,
+                            type: 'Bag Detected',
+                            status: 'compliant',
+                            details: `Count: ${detection.bags.detections.length}`
+                        });
+                    }
+                });
+            }
+            
+            if (events.length > 0) {
+                eventsList.innerHTML = events.map(event => `
+                    <div class="event-item">
+                        <div>
+                            <strong>${event.time}</strong> - ${event.type}
+                            <br><small style="color: #666;">${event.details}</small>
+                        </div>
+                        <span class="status-${event.status}">${event.status.toUpperCase()}</span>
+                    </div>
+                `).join('');
+            } else {
+                eventsList.innerHTML = '<p style="color: #666; text-align: center; padding: 20px;">No events detected</p>';
+            }
+        }
+        
+        function saveToLocalStorage() {
+            if (!currentVideoData) return;
+            
+            // Get existing videos from localStorage
+            const existingVideos = JSON.parse(localStorage.getItem('processedVideos') || '[]');
+            
+            // Add new video
+            existingVideos.push(currentVideoData);
+            
+            // Save back to localStorage
+            localStorage.setItem('processedVideos', JSON.stringify(existingVideos));
+            
+            alert('Video saved to dashboard! You can now view it at http://localhost:8083/dashboard');
+        }
+    </script>
+</body>
+</html>

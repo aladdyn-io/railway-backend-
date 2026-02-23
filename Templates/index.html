@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southern Railways - Automated Safety Detection</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #e0e4e8 0%, #f6f7f9 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 700px;
+            padding: 30px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .logo-container img { max-width: 120px; height: auto; margin-bottom: 10px; }
+        .title { font-size: 24px; font-weight: bold; color: #0056b3; margin-bottom: 5px; }
+        
+        form {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 25px;
+            margin: 20px 0;
+            text-align: left;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        form h2 { margin-bottom: 20px; font-size: 1.2rem; color: #333; border-bottom: 2px solid #0056b3; padding-bottom: 10px; }
+        
+        .file-input-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input[type="file"] { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; }
+        
+        button {
+            background-color: #0056b3; color: white; border: none; padding: 12px;
+            width: 100%; border-radius: 5px; cursor: pointer; font-size: 16px; margin-top: 10px;
+            transition: background 0.3s;
+        }
+        button:hover { background-color: #003d82; }
+        
+        .badge {
+            display: inline-block; padding: 4px 8px; border-radius: 12px; font-size: 0.8rem;
+            margin-left: 10px; background: #eee; color: #666;
+        }
+        .badge-new { background: #28a745; color: white; }
+
+        .loading { display: none; margin-top: 20px; text-align: center; }
+        .spinner {
+            border: 5px solid #f3f3f3; border-top: 5px solid #0056b3; border-radius: 50%;
+            width: 40px; height: 40px; animation: spin 1s linear infinite; margin: 0 auto 10px;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo-container">
+            <img src="{{ url_for('static', filename='Picture1.png') }}" alt="Logo">
+            <div class="title">Southern Railways System</div>
+            <p>Automated Video Analysis Portal</p>
+        </div>
+
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <h2>1. Call-Out Signal Detection <span class="badge">Standard</span></h2>
+            <div class="file-input-group">
+                <label>Video File:</label>
+                <input type="file" name="video" accept="video/*" required>
+            </div>
+            <div class="file-input-group">
+                <label>RTIS Report (.xlsx):</label>
+                <input type="file" name="report1" accept=".xlsx" required>
+            </div>
+            <div class="file-input-group">
+                <label>Master Dataset (.xlsx):</label>
+                <input type="file" name="report2" accept=".xlsx" required>
+            </div>
+            <button type="submit" onclick="showLoading('Processing Signal Data...')">Process Signal Data</button>
+        </form>
+
+        <form action="/unified_detection" method="post" enctype="multipart/form-data">
+            <h2>2. Integrated Safety & Activity <span class="badge badge-new">Unified</span></h2>
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">
+                Detects <strong>Microsleep</strong>, <strong>Mobile Usage</strong>, and <strong>Packing/Unpacking</strong> from a single video source.
+            </p>
+            <div class="file-input-group">
+                <label>Cabin Video File:</label>
+                <input type="file" name="unified_video" accept="video/*" required>
+            </div>
+            <button type="submit" onclick="showLoading('Running Combined AI Models (Face, Hands, Object)...')">Run Unified Analysis</button>
+        </form>
+
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing...</p>
+        </div>
+    </div>
+
+    <script>
+        function showLoading(text) {
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('loading-text').innerText = text;
+        }
+    </script>
+</body>
+</html>

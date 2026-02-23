@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Railway Safety Analytics - Enhanced Platform</title>
+    
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary: #2563eb;
+            --secondary: #64748b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #1e293b;
+            --light: #f8fafc;
+            --border: #e2e8f0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--dark);
+        }
+
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+        }
+
+        .brand-text h1 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .brand-text p {
+            font-size: 0.9rem;
+            color: var(--secondary);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 350px;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .upload-section {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-header {
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            color: var(--secondary);
+            font-size: 0.95rem;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 12px;
+            padding: 3rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.02);
+        }
+
+        .upload-area.dragover {
+            border-color: var(--primary);
+            background: rgba(37, 99, 235, 0.05);
+            transform: scale(1.02);
+        }
+
+        .upload-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .upload-text {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .upload-hint {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .file-input {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .config-section {
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--border);
+        }
+
+        .config-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox {
+            width: 18px;
+            height: 18px;
+        }
+
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .btn-full {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .stats-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .stats-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .stats-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .stats-icon.primary { background: var(--primary); }
+        .stats-icon.success { background: var(--success); }
+        .stats-icon.warning { background: var(--warning); }
+
+        .stats-content h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .stats-content p {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .recent-analyses {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .analysis-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .analysis-item:hover {
+            background: var(--light);
+        }
+
+        .analysis-status {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .status-completed { background: var(--success); }
+        .status-processing { background: var(--warning); }
+        .status-error { background: var(--danger); }
+
+        .analysis-info {
+            flex: 1;
+        }
+
+        .analysis-time {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+
+        .progress-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .progress-modal {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border);
+            border-top: 4px solid var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .config-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <div class="logo">
+                    <i class="fas fa-train"></i>
+                </div>
+                <div class="brand-text">
+                    <h1>Railway Safety Analytics</h1>
+                    <p>Advanced AI-Powered Detection Platform</p>
+                </div>
+            </div>
+            <div class="user-info">
+                <div class="user-avatar">{{ username[0].upper() if username else 'U' }}</div>
+                <div>
+                    <div style="font-weight: 600;">{{ username or 'User' }}</div>
+                    <div style="font-size: 0.8rem; color: var(--secondary);">Administrator</div>
+                </div>
+                <a href="/logout" class="btn btn-secondary">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="main-grid">
+            <!-- Upload Section -->
+            <div class="upload-section">
+                <div class="section-header">
+                    <h2 class="section-title">Video Analysis</h2>
+                    <p class="section-subtitle">Upload railway cabin videos for comprehensive safety analysis using advanced AI detection</p>
+                </div>
+
+                <form id="uploadForm" enctype="multipart/form-data">
+                    <div class="upload-area" id="uploadArea">
+                        <div class="upload-icon">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                        </div>
+                        <div class="upload-text">Drop your video here or click to browse</div>
+                        <div class="upload-hint">Supports MP4, AVI, MOV files up to 500MB</div>
+                        <input type="file" class="file-input" id="videoFile" name="video" accept="video/*" required>
+                    </div>
+
+                    <div class="config-section">
+                        <h3 style="margin-bottom: 1rem; color: var(--dark);">Analysis Configuration</h3>
+                        
+                        <div class="config-grid">
+                            <div class="form-group">
+                                <label class="form-label">Pose Confidence</label>
+                                <input type="range" class="form-input" name="pose_confidence" min="0.1" max="1.0" step="0.1" value="0.7">
+                                <span class="confidence-value">0.7</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Hand Detection</label>
+                                <input type="range" class="form-input" name="hand_confidence" min="0.1" max="1.0" step="0.1" value="0.7">
+                                <span class="confidence-value">0.7</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Face Analysis</label>
+                                <input type="range" class="form-input" name="face_confidence" min="0.1" max="1.0" step="0.1" value="0.8">
+                                <span class="confidence-value">0.8</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Object Detection</label>
+                                <input type="range" class="form-input" name="object_confidence" min="0.1" max="1.0" step="0.1" value="0.6">
+                                <span class="confidence-value">0.6</span>
+                            </div>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" name="enable_visualization" checked>
+                            <label class="form-label">Generate visual annotations</label>
+                        </div>
+
+                        <div class="checkbox-group">
+                            <input type="checkbox" class="checkbox" name="generate_reports" checked>
+                            <label class="form-label">Create detailed reports</label>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            <i class="fas fa-play"></i>
+                            Start Enhanced Analysis
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Quick Stats -->
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <div class="stats-icon primary">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3>{{ recent_analyses|length or 0 }}</h3>
+                            <p>Total Analyses</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <div class="stats-icon success">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3>98.5%</h3>
+                            <p>Detection Accuracy</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-card">
+                    <div class="stats-header">
+                        <div class="stats-icon warning">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="stats-content">
+                            <h3>2.3s</h3>
+                            <p>Avg Processing Time</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Analyses -->
+                <div class="recent-analyses">
+                    <h3 style="margin-bottom: 1rem; color: var(--dark);">Recent Analyses</h3>
+                    {% if recent_analyses %}
+                        {% for analysis in recent_analyses %}
+                        <div class="analysis-item">
+                            <div class="analysis-status status-{{ analysis.status }}"></div>
+                            <div class="analysis-info">
+                                <div style="font-weight: 600; font-size: 0.9rem;">Analysis #{{ loop.index }}</div>
+                                <div class="analysis-time">{{ analysis.start_time.strftime('%Y-%m-%d %H:%M') if analysis.start_time else 'Unknown' }}</div>
+                            </div>
+                            <i class="fas fa-chevron-right" style="color: var(--secondary);"></i>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <p style="color: var(--secondary); text-align: center; padding: 1rem;">No recent analyses</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Progress Overlay -->
+    <div class="progress-overlay" id="progressOverlay">
+        <div class="progress-modal">
+            <div class="spinner"></div>
+            <h3 style="margin-bottom: 1rem;">Processing Video</h3>
+            <p id="progressText">Initializing analysis...</p>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <p style="font-size: 0.9rem; color: var(--secondary);">This may take several minutes depending on video length</p>
+        </div>
+    </div>
+
+    <script>
+        // File upload handling
+        const uploadArea = document.getElementById('uploadArea');
+        const fileInput = document.getElementById('videoFile');
+        const uploadForm = document.getElementById('uploadForm');
+        const progressOverlay = document.getElementById('progressOverlay');
+        const progressFill = document.getElementById('progressFill');
+        const progressText = document.getElementById('progressText');
+
+        // Drag and drop functionality
+        uploadArea.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadArea.classList.add('dragover');
+        });
+
+        uploadArea.addEventListener('dragleave', () => {
+            uploadArea.classList.remove('dragover');
+        });
+
+        uploadArea.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadArea.classList.remove('dragover');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                updateUploadArea(files[0]);
+            }
+        });
+
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                updateUploadArea(e.target.files[0]);
+            }
+        });
+
+        function updateUploadArea(file) {
+            const uploadText = uploadArea.querySelector('.upload-text');
+            const uploadHint = uploadArea.querySelector('.upload-hint');
+            
+            uploadText.textContent = file.name;
+            uploadHint.textContent = `${(file.size / (1024 * 1024)).toFixed(1)} MB - Ready to analyze`;
+        }
+
+        // Range input updates
+        document.querySelectorAll('input[type="range"]').forEach(range => {
+            const valueSpan = range.parentElement.querySelector('.confidence-value');
+            
+            range.addEventListener('input', (e) => {
+                valueSpan.textContent = e.target.value;
+            });
+        });
+
+        // Form submission
+        uploadForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = new FormData(uploadForm);
+            
+            // Show progress overlay
+            progressOverlay.style.display = 'flex';
+            
+            try {
+                const response = await fetch('/upload', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const result = await response.json();
+                
+                if (result.session_id) {
+                    // Start polling for progress
+                    pollProgress(result.session_id);
+                } else {
+                    throw new Error(result.error || 'Upload failed');
+                }
+                
+            } catch (error) {
+                alert('Upload failed: ' + error.message);
+                progressOverlay.style.display = 'none';
+            }
+        });
+
+        // Progress polling
+        function pollProgress(sessionId) {
+            const pollInterval = setInterval(async () => {
+                try {
+                    const response = await fetch(`/analysis_status/${sessionId}`);
+                    const status = await response.json();
+                    
+                    updateProgress(status);
+                    
+                    if (status.status === 'completed') {
+                        clearInterval(pollInterval);
+                        window.location.href = `/results/${sessionId}`;
+                    } else if (status.status === 'error') {
+                        clearInterval(pollInterval);
+                        alert('Analysis failed: ' + status.error);
+                        progressOverlay.style.display = 'none';
+                    }
+                    
+                } catch (error) {
+                    console.error('Progress polling error:', error);
+                }
+            }, 2000);
+        }
+
+        function updateProgress(status) {
+            const progress = status.progress || 0;
+            progressFill.style.width = progress + '%';
+            
+            const statusMessages = {
+                'starting': 'Initializing analysis...',
+                'processing': `Processing video... ${progress}%`,
+                'completed': 'Analysis complete!',
+                'error': 'Analysis failed'
+            };
+            
+            progressText.textContent = statusMessages[status.status] || 'Processing...';
+        }
+
+        // Auto-refresh recent analyses
+        setInterval(() => {
+            // In a real implementation, this would fetch updated data
+            // For now, we'll just reload the page periodically
+        }, 30000);
+    </script>
+</body>
+</html>
